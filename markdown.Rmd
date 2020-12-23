@@ -1,0 +1,74 @@
+#***Linear Optmization Markdown***
+
+
+### **Install Library**
+```{r}
+library(lpSolve)
+```
+##### Objective function coefficients:
+```{r}
+obj_coeff <- c(13,23,30)
+```
+##### Constraint coefficients:
+```{r}
+constraints <- matrix(c(5 , 15 , 10 ,
+                        4 , 4 , 4 ,
+                        35 , 20 , 15 ,
+                        5 , 10 , 20 ),
+                      nrow = 4, byrow = TRUE)
+
+
+
+colnames(constraints) = (c("Strwaberry" , "Orange" , "Grape"))
+rownames(constraints) = (c("CO2" , "Water" , "Flavor" , "ProductionTime"))
+constraints
+```
+##### Direction of logical operators:
+```{r}
+direction <- c("<=", 
+               "<=",
+               "<=",
+               "<=")
+
+```
+
+##### Resources (Right hand side constraints):
+```{r}
+resources <- c(480,
+               160,
+               1190,
+               800)
+
+```
+##### Create the lp:
+```{r}
+sol<-lp(
+  "max", 
+  obj_coeff, 
+  constraints, 
+  direction, 
+  resources)
+```
+##### Max Profit:
+```{r}
+sol$objval
+```
+##### Best values for objective function:
+```{r}
+sol$solution
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
